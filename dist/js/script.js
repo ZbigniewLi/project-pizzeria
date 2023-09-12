@@ -60,6 +60,10 @@ const select = {
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
+      thisProduct.initAccordion();
+      thisProduct.getElements();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
     
       console.log('new Product:', thisProduct);
     }
@@ -76,7 +80,99 @@ const select = {
       //add element to menu
       menuContainer.appendChild(thisProduct.element);
     }
+
+    getElements(){
+      const thisProduct = this;
+
+      //thisProduct.accordionTrigger.addEventListener('click', function(event) {
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+    }
+
+    initAccordion(){
+      const thisProduct = this;
+  
+      /* find the clickable trigger (the element that should react to clicking) */
+      const clickableTrigger =thisProduct.element.querySelector(select.menuProduct.clickable);
+      /* START: add event listener to clickable trigger on event click */
+      clickableTrigger.addEventListener('click', function(event) {
+        /* prevent default action for event */
+        event.preventDefault();
+        /* find active product (product that has active class) */
+        const product = document.querySelector('.product.active');
+        /* if there is active product and it's not thisProduct.element, remove class active from it */
+         if (product && product != thisProduct.element){
+          product.classList.remove('active')};
+        /* toggle active class on thisProduct.element */
+        thisProduct.element.classList.toggle('active');
+      });
+    }
+
+    initOrderForm(){
+    const thisProduct = this;
+    console.log(thisProduct)
+    thisProduct.form.addEventListener('submit', function(event){
+      event.preventDefault();
+      thisProduct.processOrder();
+    });
+    
+    for(let input of thisProduct.formInputs){
+      input.addEventListener('change', function(){
+        thisProduct.processOrder();
+      });
+    }
+    
+    thisProduct.cartButton.addEventListener('click', function(event){
+      event.preventDefault();
+      thisProduct.processOrder();
+    });
   }
+    
+    processOrder(){
+      const thisProduct = this;
+      console.log(thisProduct)
+
+      const formData = utils.serializeFormToObject(this.form);
+      console.log('formData',formData);
+      
+      // set price to default price
+        let price = thisProduct.data.price;
+          for(let paramId in thisProduct.data.params){
+            const param = thisProduct.data.params[paramId]
+     // for every option in this category
+      for(let optionId in param.options) {
+        // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+        const option = param.options[optionId];
+        console.log(optionId, option);
+        // check if there is param with a name of paramId in formData and if it includes optionId
+        const image = thisProduct.element.querySelector('.' + paramId + '-' + optionId)
+        if(formData[paramId] && formData[paramId].includes(optionId)) {
+          if (image) image.classList.add('active');
+          // check if the option is not default
+          if (!option.default) {
+            // add option price to price variable
+            price += option.price;
+          }
+        }else {
+          if (image) image.classList.remove('active');
+          // check if the option is default
+           if (option.default) {
+            // reduce price variable
+            price -= option.price;
+          }
+        }
+      }
+      }
+      thisProduct.priceElem.innerHTML = price
+    }
+  }
+
+    
+
+  
 
   const app = {
     initMenu: function(){
@@ -87,8 +183,6 @@ const select = {
     new Product(productData, thisApp.data.products[productData]);
   }
 
-  const testProduct = new Product ();
-  console.log('testProduct;' , testProduct);
     },
 
     initData: function(){
@@ -109,13 +203,5 @@ const select = {
     thisApp.initMenu();
     },
   };
-
-
-
-
-
-
-
-
-
+app.init()
 }
