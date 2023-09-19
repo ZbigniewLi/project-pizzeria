@@ -351,7 +351,7 @@
       thisCart.initActions();
       console.log ('new Cart', thisCart);
     }
-    
+
     initActions(){
       const thisCart = this;
     
@@ -366,12 +366,23 @@
       thisCart.dom = {};
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
 
     add(menuProduct){
-      //const thisCart = this;
-      //thisCart.products.push(menuProduct);
+      const thisCart = this;
+      thisCart.products.push(menuProduct);
       console.log(menuProduct);
+          // Generate HTML for the cart product
+    const generatedHTML = templates.cartProduct(menuProduct);
+
+    // Create a DOM element from the generated HTML
+    const cartProductDOM = utils.createDOMFromHTML(generatedHTML);
+
+    // Add the cart product to the cart's product list
+    thisCart.dom.productList.appendChild(cartProductDOM);
+
+
     }
   }
  /*const CartProduct = {
