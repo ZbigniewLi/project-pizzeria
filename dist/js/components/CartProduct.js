@@ -2,7 +2,6 @@ import { settings } from "./settings";
 import Product from "./components/product";
 import Cart from "./components/Cart";
 import AmountWidget from "./components/AmountWidget";
-import CartProduct from "./components/CartProduct";
 
 class CartProduct{
     constructor(menuProduct, element){
