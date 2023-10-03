@@ -1,5 +1,5 @@
-import { settings } from "./settings";
-import BaseWidget from "./BaseWidget";
+import { settings, select   } from "../settings.js";
+import BaseWidget from "./BaseWidget.js";
 
 class AmountWidget extends BaseWidget{
     constructor(element){
@@ -10,13 +10,13 @@ class AmountWidget extends BaseWidget{
       //console.log('constructor arguments:' , element);
       thisWidget.getElements(element);
       thisWidget.initActions();
-      //thisWidget.setValue(thisWidget.dom.input.value||settings.amountWidget.defaultValue)
+      thisWidget.setValue(thisWidget.dom.input.value||settings.amountWidget.defaultValue)
       
     }
 
     getElements(){
       const thisWidget = this;
-      thisWidget.dom = {};
+     
      // thisWidget.dom.wrapper = element;
       thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
       thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);

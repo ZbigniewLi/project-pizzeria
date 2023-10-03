@@ -1,8 +1,7 @@
-  import { settings, select, classNames } from "./settings";
-  import Product from "./components/product";
-  import Cart from "./components/Cart";
-  import Booking from "./components/Booking";
-
+  import { settings, select, classNames, templates } from "./settings.js";
+  import Product from "./components/Product.js";
+  import Cart from "./components/Cart.js";
+import Booking from "./components/Booking.js";
 
   const app = {
 
@@ -10,7 +9,7 @@
       const thisApp = this;
 
       thisApp.booking = document.querySelector(select.containerOf.booking);
-
+      new Booking(thisApp.booking);
     },
 
     initPages: function(){
@@ -33,7 +32,7 @@
       //console.log ('pageMatchingHash' , idFromHash)
       thisApp.activatePage(pageMatchingHash);
 
-      for(let links of this.navLinks){
+      for(let link of this.navLinks){
         link.addEventListener('click', function(event){
           const clickedElement = this;
           event.preventDefault();
@@ -59,7 +58,7 @@
         page.classList.toggle(classNames.pages.active, page.id == pageId);
       }
       /* add class active to matching links, remove from non-matching*/
-      for(let Page of thisApp.navLinks){
+      for(let link of thisApp.navLinks){
         link.classList.toggle(
           classNames.nav.active,
            link.getAttribute('href') =='#' + pageId);

@@ -1,7 +1,6 @@
-import { settings } from "./settings";
-import Product from "./components/product";
-import AmountWidget from "./components/AmountWidget";
-import CartProduct from "./components/CartProduct";
+import { settings, classNames, select, templates, } from "../settings.js";
+import CartProduct from "./CartProduct.js";
+import utils from "../utils.js";
 
 class Cart {
     constructor(element){

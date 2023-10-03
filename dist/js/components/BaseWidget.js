@@ -1,3 +1,4 @@
+import { settings } from "../settings.js";
 class BaseWidget{
     constructor(wrapperElement, initialValue){
         const thisWidget = this;
@@ -7,25 +8,33 @@ class BaseWidget{
         thisWidget.correctValue = initialValue;
     }
 
-    setValue(value){
+    set value (value){
         const thisWidget = this;
-  
+      console.log('ghdjs', value);
         const newValue = thisWidget.parseValue(value)
-        const minValue = settings.amountWidget.defaultMin;
-        const maxValue = settings.amountWidget.defaultMax;
-        
+        //const minValue = settings.amountWidget.defaultMin;
+        //const maxValue = settings.amountWidget.defaultMax;
+        console.log(newValue)
       /* TODO: Add validation */
-      if(thisWidget.correctValue !== newValue && !isNaN(newValue)) {
+      if(thisWidget.correctValue !== newValue && thisWidget.isValid()) {
       thisWidget.correctValue = newValue;
       
-    } if (newValue < minValue) {
-      thisWidget.correctValue = minValue;
-    } if (newValue > maxValue) {
-      thisWidget.correctValue = maxValue;
-    }
+    } 
     //thisWidget.dom.input.value = thisWidget.correctValue;
     thisWidget.renderValue();
     thisWidget.announce();
+  }
+
+  setValue(value){
+    const thisWidget = this;
+    
+    thisWidget.value = value;
+  }
+
+  get value(){
+    const thisWidget = this;
+
+    return thisWidget.correctValue;
   }
 
   parseValue(value){
@@ -34,18 +43,17 @@ class BaseWidget{
 
     isValid(value){
         // cot tutaj dodaC??????
-        return value
+        return true
       }
 
       renderValue(){
         const thisWidget = this;
-        thisWidget.dom.wrapper.innerHTML = thisWidget.correctValue;
+        thisWidget.dom.wrapper.innerHTML = thisWidget.value;
       }
 
       announce(){
         const thisWidget = this;
-        thisWidget.dom.wrapper.dispatchEvent(new Event('updated'));
-        const event = new CustomEvent ('updated', {bubbles: true});
+        thisWidget.dom.wrapper.dispatchEvent(new CustomEvent ('updated', {bubbles: true}));
       }
 }
 
