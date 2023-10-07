@@ -6,9 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pizzeria</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
-  <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v6.4.2/css/all.css" rel="stylesheet">
   <link href="./vendor/range-slider.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="vendor/flickity.min.css" media="screen">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,6 +22,7 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+          <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
       </div>
@@ -62,6 +64,105 @@
   </header>
 
   <div id="pages">
+    <section id="home">
+      <div class="booking-home container">
+          <div class="home-boxes">
+            <a href="#order" class="box box-left">
+              <p class="box-text">order online </p>
+              <p class="text-hidden">Delicious food delivered to your door</p>
+            </a>
+            <a href="#booking" class="box box-right">
+              <p class="box-text">book a table</p>
+              <p class="text-hidden">Make sure that your seat is reserved for you</p>
+            </a>
+            <div class="box-down">
+              <p class="information">opening hours:</p>
+              <p class="data">tue-sun, 12pm-12am</p>
+            </div>
+          </div>
+      <!-- Flickity HTML init -->
+      <div class="carousel" data-flickity='{ "wrapAround": true, "autoPlay": true }'>
+        <div class="carousel-cell">
+          <div class="carousel-opinion">
+            <img class="carousel-opinion-img"
+              src="https://images.pexels.com/photos/1566837/pexels-photo-1566837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="pizza">
+            <div class="carousel-opinion-texts">
+              <h2 class="carousel-opinion-texts-title">Greate venue</h2>
+              <p class="carousel-opinion-texts-description"> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+              <p class="carousel-opinion-texts-signature"> - Joseph </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="carousel-opinion">
+            <img class="carousel-opinion-img"
+              src="https://images.pexels.com/photos/3915855/pexels-photo-3915855.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="pizza">
+            <div class="carousel-opinion-texts">
+              <h2 class="carousel-opinion-texts-title">Good snacks</h2>
+              <p class="carousel-opinion-texts-description"> It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing </p>
+              <p class="carousel-opinion-texts-signature">- Fernado </p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="carousel-opinion">
+            <img class="carousel-opinion-img"
+              src="https://images.pexels.com/photos/3762069/pexels-photo-3762069.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="pizza">
+            <div class="carousel-opinion-texts">
+              <h2 class="carousel-opinion-texts-title">Best service</h2>
+              <p class="carousel-opinion-texts-description">Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p class="carousel-opinion-texts-signature">- Brayana </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="home-gallery">
+      <div class="photo-box"><img src="images/assets/pizza-4.jpg" alt="" class="photo">
+        <div class="background-shadow"></div>
+        <div class="icon-shadow">
+          <i class="fa-solid fa-heart"></i>
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+      </div>
+      <div class="photo-box"><img src="images/assets/pizza-5.jpg" alt="" class="photo">
+        <div class="background-shadow"></div>
+        <div class="icon-shadow">
+          <i class="fa-solid fa-heart"></i>
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+      </div>
+      <div class="photo-box"><img src="images/assets/pizza-6.jpg" alt="" class="photo">
+        <div class="background-shadow"></div>
+        <div class="icon-shadow">
+          <i class="fa-solid fa-heart"></i>
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+      </div>
+      <div class="photo-box"><img src="images/assets/pizza-7.jpg" alt="" class="photo">
+        <div class="background-shadow"></div>
+        <div class="icon-shadow">
+          <i class="fa-solid fa-heart"></i>
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+      </div>
+      <div class="photo-box"><img src="images/assets/pizza-8.jpg" alt="" class="photo">
+        <div class="background-shadow"></div>
+        <div class="icon-shadow">
+          <i class="fa-solid fa-heart"></i>
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+      </div>
+      <div class="photo-box"><img src="images/assets/pizza-3.jpg" alt="" class="photo">
+        <div class="background-shadow"></div>
+        <div class="icon-shadow">
+          <i class="fa-solid fa-heart"></i>
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+      </div>
+    </div>
+  <a class="instagram" href="https://www.instagram.com/">View more on Instagram</a>
+</div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -244,6 +345,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="./vendor/range-slider.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>

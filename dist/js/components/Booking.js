@@ -153,13 +153,26 @@ class Booking {
     this.dom.datePicker = this.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     this.dom.hourPicker = this.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
 }
-    initWidgets(){
+    /*initWidgets(){
         const thisWidget = this;
 
         thisWidget.peopleAmount = new AmountWidget(this.dom.peopleAmount);
         thisWidget.hoursAmount = new AmountWidget(this.dom.hoursAmount);
         thisWidget.datePicker = new DatePicker(this.dom.datePicker);
         thisWidget.hourPicker = new HourPicker(this.dom.hourPicker);
+
+        thisBooking.dom.wrapper.addeventListener('updated', function (){
+            thisBooking.updateDOM();
+        })
+    }*/
+
+    initWidgets(){
+        const thisBooking = this;
+
+        thisBooking.peopleAmount = new AmountWidget(this.dom.peopleAmount);
+        thisBooking.hoursAmount = new AmountWidget(this.dom.hoursAmount);
+        thisBooking.datePicker = new DatePicker(this.dom.datePicker);
+        thisBooking.hourPicker = new HourPicker(this.dom.hourPicker);
 
         thisBooking.dom.wrapper.addeventListener('updated', function (){
             thisBooking.updateDOM();

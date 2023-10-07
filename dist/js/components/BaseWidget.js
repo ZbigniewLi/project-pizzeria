@@ -41,7 +41,7 @@ class BaseWidget{
     return parseInt(value);
     }
 
-    isValid(value){
+    isValid(){
         // w nawiasie isVlid było value, ale npm pokazywał bład więc usunałem
         return true
       }
