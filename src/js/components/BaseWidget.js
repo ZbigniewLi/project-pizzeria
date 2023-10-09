@@ -16,8 +16,9 @@ class BaseWidget{
         //const maxValue = settings.amountWidget.defaultMax;
         console.log(newValue)
       /* TODO: Add validation */
-      if(thisWidget.correctValue !== newValue && thisWidget.isValid()) {
+      if(thisWidget.correctValue !== newValue && thisWidget.isValid(newValue)) {
       thisWidget.correctValue = newValue;
+      console.log('czy dziala')
       
     } 
     //thisWidget.dom.input.value = thisWidget.correctValue;
