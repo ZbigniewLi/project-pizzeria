@@ -45,6 +45,12 @@ booking: {
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
     tableSelected: '.table.selected',
+    starters: 'input[name = "starter"]',
+    form: '.booking-form',
+    phone: 'input[name= "phone"]',
+    address: 'input[name= "address"]',
+
+
 },
 nav: {
     links: '.main-nav a',

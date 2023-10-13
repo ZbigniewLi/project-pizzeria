@@ -181,6 +181,10 @@ class Booking {
     this.dom.datePicker = this.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     this.dom.hourPicker = this.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
     this.dom.tables = this.dom.wrapper.querySelectorAll(select.booking.tables);
+    this.dom.starters = this.dom.wrapper.querySelectorAll(select.booking.starters);
+    this.dom.form = this.dom.wrapper.querySelector(select.booking.form);
+    this.dom.phone = this.dom.wrapper.querySelector(select.booking.phone);
+    this.dom.address = this.dom.wrapper.querySelector(select.booking.address);
 }
     /*initWidgets(){
         const thisWidget = this;
@@ -202,6 +206,10 @@ class Booking {
         thisBooking.hoursAmount = new AmountWidget(this.dom.hoursAmount);
         thisBooking.datePicker = new DatePicker(this.dom.datePicker);
         thisBooking.hourPicker = new HourPicker(this.dom.hourPicker);
+        thisBooking.dom.form.addEventListener('submit', function(event){
+            event.preventDefault();
+            thisBooking.sendBooking();
+        })
 
         thisBooking.dom.wrapper.addEventListener('updated', function (){
             thisBooking.updateDOM();
@@ -212,5 +220,34 @@ class Booking {
         })
     }
     }
+    
+    sendBooking(){
+        const thisBooking = this;
+        const url = settings.db.url + '/' + settings.db.bookings;
+        const payload = {
+            
+            date: thisBooking.datePicker.value,//data wybrana w datePickerze
+            hour: thisBooking.hourPicker.value, //godzina wybrana w hourPickerze (w formacie HH:ss)
+            table: thisBooking.selectedTable, //numer wybranego stolika (lub null jeśli nic nie wybrano)
+            duration: thisBooking.hoursAmount.value, //liczba godzin wybrana przez klienta
+            ppl: thisBooking.peopleAmount.value, //liczba osób wybrana przez klienta
+            starters: [],
+            phone: thisBooking.dom.phone.value, //numer telefonu z formularza,
+            address: thisBooking.dom.address.value, //adres z formularza
+            
+          }
+          for(let starter of thisBooking.dom.starters) {
+            if(starter.checked) payload.starters.push(starter.value);
+          }
+          const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          };
+          fetch(url, options);
+       }   
+  
 }
 export default Booking;
